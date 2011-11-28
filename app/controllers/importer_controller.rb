@@ -190,6 +190,7 @@ class ImporterController < ApplicationController
       issue.project_id = project != nil ? project.id : @project.id
       issue.tracker_id = tracker != nil ? tracker.id : default_tracker
       issue.author_id = author != nil ? author.id : User.current.id
+      issue.story_points = row[attrs_map["story_points"]] != nil ? row[attrs_map["story_points"]].to_i : nil if attrs_map["story_points"]
 
       # trnaslate unique_attr if it's a custom field -- only on the first issue
       if !unique_attr_checked
